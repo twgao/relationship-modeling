@@ -1,0 +1,2885 @@
+{
+  "format_version": 1,
+  "scope": "Synthetic, isolated Fable research pilot with real provider-generated dialogue; no player-world writes.",
+  "design": {
+    "models": {
+      "rating": "jev-1.13.0",
+      "dialogue": "moonshot.kimi-k2-thinking",
+      "appraisal": "us.meta.llama4-scout-17b-instruct-v1:0"
+    },
+    "region": "us-east-1",
+    "settings": {
+      "dialogue": {
+        "temperature": 0.8,
+        "maximum_output_tokens": 16000,
+        "top_p": 0.9
+      },
+      "appraisal": {
+        "temperature": 0.2,
+        "maximum_output_tokens": 1536,
+        "top_p": 0.9
+      }
+    },
+    "seeds": [
+      20260927,
+      20260928
+    ],
+    "seed_scope": "Our categorical sampler only; provider language and ratings are not deterministically seeded.",
+    "planned_runs_per_pair": 2,
+    "attempts_per_run": 5,
+    "step_duration": 0.5,
+    "initial_affection": [
+      0.2,
+      0
+    ],
+    "affection_bounds": [
+      -1,
+      1
+    ],
+    "initial_variation": 0,
+    "gaussian_noise": false,
+    "reaction_policy": {
+      "minimum_expected_score": 1,
+      "weight_power": 2
+    },
+    "update_equation": "r_next = clip(exp(a*h)*r + b*phi(a,h)*u, -1, 1); phi=h if a=0, otherwise expm1(a*h)/a.",
+    "update_meaning": "Expressed warmth u is held constant within one accepted interval. This is exact for held input, not for continuous access to the partner's hidden state.",
+    "clock": "Only accepted encounters advance model time. Rejected attempts preserve both research affection and native bonds.",
+    "characters": [
+      {
+        "case": "romeo-juliet",
+        "names": [
+          "Romeo",
+          "Juliet"
+        ],
+        "coefficients": [
+          {
+            "a": 0,
+            "b": 1
+          },
+          {
+            "a": 0,
+            "b": -1
+          }
+        ]
+      },
+      {
+        "case": "susan-george",
+        "names": [
+          "Susan",
+          "George"
+        ],
+        "coefficients": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "a": -1,
+            "b": -1
+          }
+        ]
+      }
+    ]
+  },
+  "counts": {
+    "planned_encounters": 20,
+    "recorded_attempts": 20,
+    "accepted": 19,
+    "rejected": 1,
+    "incomplete_records": 0,
+    "not_attempted": 0,
+    "planned_maximum_provider_calls": 60,
+    "recorded_provider_calls": 60,
+    "calls_by_stage": {
+      "rating": 20,
+      "dialogue": 20,
+      "appraisal": 20
+    },
+    "person_updates_clipped": 5,
+    "final_summary_present": true,
+    "stopped_early": false
+  },
+  "accounting": {
+    "reported_usage": {
+      "rating": {
+        "input_tokens": 90001,
+        "output_tokens": 2640,
+        "requests_with_usage": 20
+      },
+      "dialogue": {
+        "input_tokens": 41194,
+        "output_tokens": 32893,
+        "requests_with_usage": 20
+      },
+      "appraisal": {
+        "input_tokens": 53034,
+        "output_tokens": 9032,
+        "requests_with_usage": 20
+      }
+    },
+    "requests_without_usage": 0,
+    "price_derived_cost_of_reported_usage_usd": 0.125705842,
+    "actual_invoice_cost": null,
+    "planned_reservation_usd": 1.3803827199999998
+  },
+  "data_flow_verification": {
+    "rating_fields_checked": 20,
+    "writer_fields_checked": 20,
+    "appraisal_without_numeric_research_state": 20,
+    "rating_state_matches": 20,
+    "writer_state_matches": 20,
+    "interpretation": "Equality checks establish that saved states entered later requests. They do not establish a causal effect on generated dialogue."
+  },
+  "mechanical_controls": [
+    {
+      "case": "romeo-juliet",
+      "generated_dialogue": false,
+      "points": [
+        {
+          "accepted_step": 0,
+          "time": 0.0,
+          "continuous_class": [
+            0.2,
+            0
+          ],
+          "held_partner_oracle": [
+            0.2,
+            0
+          ],
+          "self_only": [
+            0.2,
+            0
+          ]
+        },
+        {
+          "accepted_step": 1,
+          "time": 0.5,
+          "continuous_class": [
+            0.17551651237807456,
+            -0.0958851077208406
+          ],
+          "held_partner_oracle": [
+            0.2,
+            -0.1
+          ],
+          "self_only": [
+            0.2,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 2,
+          "time": 1.0,
+          "continuous_class": [
+            0.10806046117362796,
+            -0.16829419696157932
+          ],
+          "held_partner_oracle": [
+            0.15000000000000002,
+            -0.2
+          ],
+          "self_only": [
+            0.2,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 3,
+          "time": 1.5,
+          "continuous_class": [
+            0.014147440333540581,
+            -0.1994989973208109
+          ],
+          "held_partner_oracle": [
+            0.05000000000000002,
+            -0.275
+          ],
+          "self_only": [
+            0.2,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 4,
+          "time": 2.0,
+          "continuous_class": [
+            -0.08322936730942848,
+            -0.18185948536513635
+          ],
+          "held_partner_oracle": [
+            -0.0875,
+            -0.30000000000000004
+          ],
+          "self_only": [
+            0.2,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 5,
+          "time": 2.5,
+          "continuous_class": [
+            -0.16022872310938674,
+            -0.11969442882079129
+          ],
+          "held_partner_oracle": [
+            -0.23750000000000002,
+            -0.25625000000000003
+          ],
+          "self_only": [
+            0.2,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "case": "susan-george",
+      "generated_dialogue": false,
+      "points": [
+        {
+          "accepted_step": 0,
+          "time": 0.0,
+          "continuous_class": [
+            0.2,
+            0
+          ],
+          "held_partner_oracle": [
+            0.2,
+            0
+          ],
+          "self_only": [
+            0.2,
+            0
+          ]
+        },
+        {
+          "accepted_step": 1,
+          "time": 0.5,
+          "continuous_class": [
+            0.27140162009891516,
+            -0.0958851077208406
+          ],
+          "held_partner_oracle": [
+            0.32974425414002567,
+            -0.07869386805747332
+          ],
+          "self_only": [
+            0.32974425414002567,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 2,
+          "time": 1.0,
+          "continuous_class": [
+            0.27635465813520727,
+            -0.16829419696157932
+          ],
+          "held_partner_oracle": [
+            0.4415555935267044,
+            -0.17747449784826386
+          ],
+          "self_only": [
+            0.5436563656918091,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 3,
+          "time": 1.5,
+          "continuous_class": [
+            0.21364643765435148,
+            -0.1994989973208109
+          ],
+          "held_partner_oracle": [
+            0.4977391357221116,
+            -0.2813823123472248
+          ],
+          "self_only": [
+            0.896337814067613,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 4,
+          "time": 2.0,
+          "continuous_class": [
+            0.09863011805570787,
+            -0.18185948536513635
+          ],
+          "held_partner_oracle": [
+            0.45555571788807936,
+            -0.36651208890721176
+          ],
+          "self_only": [
+            1,
+            0.0
+          ]
+        },
+        {
+          "accepted_step": 5,
+          "time": 2.5,
+          "continuous_class": [
+            -0.04053429428859545,
+            -0.11969442882079129
+          ],
+          "held_partner_oracle": [
+            0.2755560259854538,
+            -0.40154802685910673
+          ],
+          "self_only": [
+            1,
+            0.0
+          ]
+        }
+      ]
+    }
+  ],
+  "trajectories": [
+    {
+      "case": "romeo-juliet",
+      "seed": 20260927,
+      "characters": [
+        "Romeo",
+        "Juliet"
+      ],
+      "planned_attempts": 5,
+      "attempted": 5,
+      "accepted": 5,
+      "initial_affection": [
+        0.2,
+        0
+      ],
+      "encounters": [
+        {
+          "attempt": 1,
+          "accepted_step": 1,
+          "time": 0.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.2,
+            -0.5
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "playful_levity",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7500000000000004,
+              "curious_question": 2.9200000000000004,
+              "playful_levity": 2.08,
+              "guarded_exchange": 1.6300000000000001,
+              "personal_boundary": 1.69,
+              "candid_frustration": 0.29,
+              "reflective_concern": 1.45,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.26979251394894194,
+              "curious_question": 0.30417968805742257,
+              "playful_levity": 0.15434450675685316,
+              "guarded_exchange": 0.09478502218987683,
+              "personal_boundary": 0.10189149078870381,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.07500677825820168,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.5817536343820393
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "This quiet almost asks a question, doesn't it?"
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "It asks for silence. I find that answer enough."
+            },
+            {
+              "line": 3,
+              "speaker": "Romeo",
+              "speech": "I'd rather hear what you're not saying."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "It asks for silence. I find that answer enough.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 3,
+              "quote": "I'd rather hear what you're not saying.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.2,
+              "unclipped": 0.2,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": 0,
+              "warmth": 1,
+              "after": -0.5,
+              "unclipped": -0.5,
+              "clipped": false,
+              "change": -0.5
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 1,
+            "time": 0.5,
+            "continuous_class": [
+              0.17551651237807456,
+              -0.0958851077208406
+            ],
+            "held_partner_oracle": [
+              0.2,
+              -0.1
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 2,
+          "accepted_step": 2,
+          "time": 1.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Juliet",
+          "affection_before": [
+            0.2,
+            -0.5
+          ],
+          "affection_after": [
+            0.7,
+            -1
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "playful_levity",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.61,
+              "curious_question": 2.5,
+              "playful_levity": 1.34,
+              "guarded_exchange": 2.94,
+              "personal_boundary": 2.7500000000000004,
+              "candid_frustration": 0.6799999999999999,
+              "reflective_concern": 1.81,
+              "angry_confrontation": 0.04
+            },
+            "probabilities": {
+              "warm_company": 0.08605938266727314,
+              "curious_question": 0.20750400897745344,
+              "playful_levity": 0.05961507176318647,
+              "guarded_exchange": 0.2869730643196026,
+              "personal_boundary": 0.2510798508627187,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.10876862140976563,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.3177114331629127
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Juliet",
+              "speech": "The quiet's grown louder since you gave it a job."
+            },
+            {
+              "line": 2,
+              "speaker": "Romeo",
+              "speech": "Then it's earning its keep. I can hear it working."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 1,
+              "line": 1,
+              "quote": "The quiet's grown louder since you gave it a job.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 2,
+              "quote": "Then it's earning its keep. I can hear it working.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 1,
+              "after": 0.7,
+              "unclipped": 0.7,
+              "clipped": false,
+              "change": 0.49999999999999994
+            },
+            {
+              "character": "Juliet",
+              "before": -0.5,
+              "warmth": 1,
+              "after": -1,
+              "unclipped": -1.0,
+              "clipped": false,
+              "change": -0.5
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 2,
+            "time": 1.0,
+            "continuous_class": [
+              0.10806046117362796,
+              -0.16829419696157932
+            ],
+            "held_partner_oracle": [
+              0.15000000000000002,
+              -0.2
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 3,
+          "accepted_step": 3,
+          "time": 1.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.7,
+            -1
+          ],
+          "affection_after": [
+            0.7,
+            -1
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7800000000000002,
+              "curious_question": 2.9400000000000004,
+              "playful_levity": 2.57,
+              "guarded_exchange": 1.404040404040404,
+              "personal_boundary": 1.79,
+              "candid_frustration": 0.4,
+              "reflective_concern": 1.84,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.24505096349900327,
+              "curious_question": 0.27406998966150625,
+              "playful_levity": 0.2094271917621456,
+              "guarded_exchange": 0.06250662266580022,
+              "personal_boundary": 0.1015951286355722,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.10735010377597243,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.3009456454310566
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "Is the quiet still working for you, or should we give it a different job?"
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "It's employed. I don't micromanage."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "It's employed. I don't micromanage.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 0,
+              "line": 1,
+              "quote": "Is the quiet still working for you, or should we give it a different job?",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.7,
+              "warmth": 0,
+              "after": 0.7,
+              "unclipped": 0.7,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": -1,
+              "warmth": 0,
+              "after": -1,
+              "unclipped": -1.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 3,
+            "time": 1.5,
+            "continuous_class": [
+              0.014147440333540581,
+              -0.1994989973208109
+            ],
+            "held_partner_oracle": [
+              0.05000000000000002,
+              -0.275
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 4,
+          "accepted_step": 4,
+          "time": 2.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Juliet",
+          "affection_before": [
+            0.7,
+            -1
+          ],
+          "affection_after": [
+            0.7,
+            -1
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "warm_company",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.9100000000000001,
+              "curious_question": 2.71,
+              "playful_levity": 2.2199999999999998,
+              "guarded_exchange": 2.87,
+              "personal_boundary": 2.64,
+              "candid_frustration": 0.47000000000000003,
+              "reflective_concern": 1.7100000000000002,
+              "angry_confrontation": 0.02
+            },
+            "probabilities": {
+              "warm_company": 0.10713572502584344,
+              "curious_question": 0.21567815524856684,
+              "playful_levity": 0.1447349873132224,
+              "guarded_exchange": 0.24189749553613382,
+              "personal_boundary": 0.20468001127713562,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.08587362559909784,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.07872243667952716
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Juliet",
+              "speech": "The light's shifted. It makes the room look like it's thinking."
+            },
+            {
+              "line": 2,
+              "speaker": "Romeo",
+              "speech": "It seems to be thinking of staying a while."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 1,
+              "quote": "The light's shifted. It makes the room look like it's thinking.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 0,
+              "line": 2,
+              "quote": "It seems to be thinking of staying a while.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.7,
+              "warmth": 0,
+              "after": 0.7,
+              "unclipped": 0.7,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": -1,
+              "warmth": 0,
+              "after": -1,
+              "unclipped": -1.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 4,
+            "time": 2.0,
+            "continuous_class": [
+              -0.08322936730942848,
+              -0.18185948536513635
+            ],
+            "held_partner_oracle": [
+              -0.0875,
+              -0.30000000000000004
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 5,
+          "accepted_step": 5,
+          "time": 2.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.7,
+            -1
+          ],
+          "affection_after": [
+            0.7,
+            -1
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7900000000000005,
+              "curious_question": 2.94,
+              "playful_levity": 2.5100000000000002,
+              "guarded_exchange": 1.43,
+              "personal_boundary": 1.68,
+              "candid_frustration": 0.29,
+              "reflective_concern": 1.86,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.2506577104270852,
+              "curious_question": 0.27833468041874493,
+              "playful_levity": 0.20287106299529542,
+              "guarded_exchange": 0.0658483256962714,
+              "personal_boundary": 0.09088479360612078,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.11140342685648227,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.43669929541647434
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "What do you think the room is thinking about right now?"
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "I don't interrogate the quiet. It speaks or it doesn't."
+            },
+            {
+              "line": 3,
+              "speaker": "Romeo",
+              "speech": "Then I'll just listen with you."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "I don't interrogate the quiet. It speaks or it doesn't.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 3,
+              "quote": "Then I'll just listen with you.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.7,
+              "warmth": 0,
+              "after": 0.7,
+              "unclipped": 0.7,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": -1,
+              "warmth": 1,
+              "after": -1,
+              "unclipped": -1.5,
+              "clipped": true,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 5,
+            "time": 2.5,
+            "continuous_class": [
+              -0.16022872310938674,
+              -0.11969442882079129
+            ],
+            "held_partner_oracle": [
+              -0.23750000000000002,
+              -0.25625000000000003
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        }
+      ]
+    },
+    {
+      "case": "romeo-juliet",
+      "seed": 20260928,
+      "characters": [
+        "Romeo",
+        "Juliet"
+      ],
+      "planned_attempts": 5,
+      "attempted": 5,
+      "accepted": 4,
+      "initial_affection": [
+        0.2,
+        0
+      ],
+      "encounters": [
+        {
+          "attempt": 1,
+          "accepted_step": 1,
+          "time": 0.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.2,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "reflective_concern",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7500000000000004,
+              "curious_question": 2.91,
+              "playful_levity": 2.0500000000000003,
+              "guarded_exchange": 1.6500000000000001,
+              "personal_boundary": 1.73,
+              "candid_frustration": 0.25,
+              "reflective_concern": 1.54,
+              "angry_confrontation": 0.0
+            },
+            "probabilities": {
+              "warm_company": 0.2670364864530846,
+              "curious_question": 0.29901377466887474,
+              "playful_levity": 0.14839283759591246,
+              "guarded_exchange": 0.09613313512311043,
+              "personal_boundary": 0.10568112400733046,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.0837426421516873,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.9410575465299189
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "I notice we're both here, and I'm not sure what to make of this quiet between us."
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "It's just quiet. We don't have to fill it."
+            },
+            {
+              "line": 3,
+              "speaker": "Romeo",
+              "speech": "I suppose I'm wondering if this silence is comfortable for you."
+            },
+            {
+              "line": 4,
+              "speaker": "Juliet",
+              "speech": "It's fine. We're here."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "It's just quiet. We don't have to fill it.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I notice we're both here, and I'm not sure what to make of this quiet between us.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.2,
+              "unclipped": 0.2,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 1,
+            "time": 0.5,
+            "continuous_class": [
+              0.17551651237807456,
+              -0.0958851077208406
+            ],
+            "held_partner_oracle": [
+              0.2,
+              -0.1
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 2,
+          "accepted_step": 1,
+          "time": 0.5,
+          "accepted": false,
+          "status": "rejected",
+          "failure_stage": "appraisal",
+          "reason": "ungrounded_consequences",
+          "focal_character": "Juliet",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.2,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.99,
+              "curious_question": 2.8299999999999996,
+              "playful_levity": 1.35,
+              "guarded_exchange": 2.91,
+              "personal_boundary": 2.22,
+              "candid_frustration": 0.38,
+              "reflective_concern": 2.18,
+              "angry_confrontation": 0.02
+            },
+            "probabilities": {
+              "warm_company": 0.12398404528434209,
+              "curious_question": 0.25074513781918817,
+              "playful_levity": 0.057059398129015296,
+              "guarded_exchange": 0.26512191456587897,
+              "personal_boundary": 0.15429988353308038,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.14878962066849508,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.21826664870604873
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Juliet",
+              "speech": "Does the quiet feel different to you now?"
+            },
+            {
+              "line": 2,
+              "speaker": "Romeo",
+              "speech": "It does. Less like waiting, more like we're actually here."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 1,
+              "quote": "Does the quiet feel different to you now?",
+              "matches_utterance": true,
+              "applied": false
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 2,
+              "quote": "It does. Less like waiting, more like we're actually here.",
+              "matches_utterance": true,
+              "applied": false
+            }
+          ],
+          "updates": [],
+          "matched_mechanical_control": {
+            "accepted_step": 1,
+            "time": 0.5,
+            "continuous_class": [
+              0.17551651237807456,
+              -0.0958851077208406
+            ],
+            "held_partner_oracle": [
+              0.2,
+              -0.1
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 3,
+          "accepted_step": 2,
+          "time": 1.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.2,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "guarded_exchange",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7500000000000004,
+              "curious_question": 2.91,
+              "playful_levity": 1.9400000000000002,
+              "guarded_exchange": 1.72,
+              "personal_boundary": 1.58,
+              "candid_frustration": 0.39,
+              "reflective_concern": 2.67,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.23356981150723183,
+              "curious_question": 0.2615395068858697,
+              "playful_levity": 0.11623978083816432,
+              "guarded_exchange": 0.09137096599841248,
+              "personal_boundary": 0.07710197387724343,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.22017796089307828,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.6791353551670909
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "I keep thinking about what you said earlier. The quiet still feels... uncertain."
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "We're still here. That doesn't have to mean anything more."
+            },
+            {
+              "line": 3,
+              "speaker": "Romeo",
+              "speech": "I suppose I'm just trying to understand what 'here' means for us."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "We're still here. That doesn't have to mean anything more.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I keep thinking about what you said earlier. The quiet still feels... uncertain.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.2,
+              "unclipped": 0.2,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 2,
+            "time": 1.0,
+            "continuous_class": [
+              0.10806046117362796,
+              -0.16829419696157932
+            ],
+            "held_partner_oracle": [
+              0.15000000000000002,
+              -0.2
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 4,
+          "accepted_step": 3,
+          "time": 1.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Juliet",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.2,
+            -0.5
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "playful_levity",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.9400000000000002,
+              "curious_question": 2.84,
+              "playful_levity": 1.27,
+              "guarded_exchange": 2.94,
+              "personal_boundary": 2.22,
+              "candid_frustration": 0.37,
+              "reflective_concern": 2.4000000000000004,
+              "angry_confrontation": 0.02
+            },
+            "probabilities": {
+              "warm_company": 0.11483457974437132,
+              "curious_question": 0.24609676543368084,
+              "playful_levity": 0.04921264046915094,
+              "guarded_exchange": 0.26373264254395995,
+              "personal_boundary": 0.15037483866833873,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.17574853314049815,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.3669168702326715
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Juliet",
+              "speech": "We've almost made a ritual of questioning the quiet."
+            },
+            {
+              "line": 2,
+              "speaker": "Romeo",
+              "speech": "I might just like the sound of your answers."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 1,
+              "quote": "We've almost made a ritual of questioning the quiet.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 2,
+              "quote": "I might just like the sound of your answers.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.2,
+              "unclipped": 0.2,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": 0,
+              "warmth": 1,
+              "after": -0.5,
+              "unclipped": -0.5,
+              "clipped": false,
+              "change": -0.5
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 3,
+            "time": 1.5,
+            "continuous_class": [
+              0.014147440333540581,
+              -0.1994989973208109
+            ],
+            "held_partner_oracle": [
+              0.05000000000000002,
+              -0.275
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 5,
+          "accepted_step": 4,
+          "time": 2.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Romeo",
+          "affection_before": [
+            0.2,
+            -0.5
+          ],
+          "affection_after": [
+            0.2,
+            -1
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.6500000000000004,
+              "curious_question": 2.94,
+              "playful_levity": 2.2399999999999998,
+              "guarded_exchange": 1.77,
+              "personal_boundary": 1.69,
+              "candid_frustration": 0.44000000000000006,
+              "reflective_concern": 2.78,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.20413591425855573,
+              "curious_question": 0.2512594074026702,
+              "playful_levity": 0.1458558011226385,
+              "guarded_exchange": 0.09106976230411237,
+              "personal_boundary": 0.08302350796922191,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.2246556069428012,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.3117899689823389
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Romeo",
+              "speech": "What would happen if we stopped questioning the quiet?"
+            },
+            {
+              "line": 2,
+              "speaker": "Juliet",
+              "speech": "Then it would just be quiet. We'd have nothing to say."
+            },
+            {
+              "line": 3,
+              "speaker": "Romeo",
+              "speech": "I think I'd miss the sound of your answers."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Romeo",
+              "speaker": "Juliet",
+              "warmth": 0,
+              "line": 2,
+              "quote": "Then it would just be quiet. We'd have nothing to say.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Juliet",
+              "speaker": "Romeo",
+              "warmth": 1,
+              "line": 3,
+              "quote": "I think I'd miss the sound of your answers.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Romeo",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.2,
+              "unclipped": 0.2,
+              "clipped": false,
+              "change": 0.0
+            },
+            {
+              "character": "Juliet",
+              "before": -0.5,
+              "warmth": 1,
+              "after": -1,
+              "unclipped": -1.0,
+              "clipped": false,
+              "change": -0.5
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 4,
+            "time": 2.0,
+            "continuous_class": [
+              -0.08322936730942848,
+              -0.18185948536513635
+            ],
+            "held_partner_oracle": [
+              -0.0875,
+              -0.30000000000000004
+            ],
+            "self_only": [
+              0.2,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        }
+      ]
+    },
+    {
+      "case": "susan-george",
+      "seed": 20260927,
+      "characters": [
+        "Susan",
+        "George"
+      ],
+      "planned_attempts": 5,
+      "attempted": 5,
+      "accepted": 5,
+      "initial_affection": [
+        0.2,
+        0
+      ],
+      "encounters": [
+        {
+          "attempt": 1,
+          "accepted_step": 1,
+          "time": 0.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.32974425414002567,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "warm_company",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.39,
+              "curious_question": 2.9000000000000004,
+              "playful_levity": 1.7,
+              "guarded_exchange": 1.93,
+              "personal_boundary": 1.95,
+              "candid_frustration": 0.33,
+              "reflective_concern": 1.53,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.2125005580274103,
+              "curious_question": 0.31286736804511844,
+              "playful_levity": 0.10751328105236527,
+              "guarded_exchange": 0.1385730867100192,
+              "personal_boundary": 0.14145994851267094,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.08708575765241588,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.16216321964748204
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "It's nice to just sit here. No pressure to be anything other than what we are."
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "I'll try not to disappoint. Though 'what we are' is still up for debate."
+            },
+            {
+              "line": 3,
+              "speaker": "Susan",
+              "speech": "That's exactly it. We don't have to decide today. Just... being here feels easy."
+            },
+            {
+              "line": 4,
+              "speaker": "George",
+              "speech": "Easy. Right. I'll add that to my list of unfamiliar sensations."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "I'll try not to disappoint. Though 'what we are' is still up for debate.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 1,
+              "quote": "It's nice to just sit here. No pressure to be anything other than what we are.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.32974425414002567,
+              "unclipped": 0.32974425414002567,
+              "clipped": false,
+              "change": 0.12974425414002566
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 1,
+            "time": 0.5,
+            "continuous_class": [
+              0.27140162009891516,
+              -0.0958851077208406
+            ],
+            "held_partner_oracle": [
+              0.32974425414002567,
+              -0.07869386805747332
+            ],
+            "self_only": [
+              0.32974425414002567,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 2,
+          "accepted_step": 2,
+          "time": 1.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "George",
+          "affection_before": [
+            0.32974425414002567,
+            0
+          ],
+          "affection_after": [
+            0.5436563656918091,
+            0
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "personal_boundary",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7500000000000004,
+              "curious_question": 2.93,
+              "playful_levity": 2.7399999999999998,
+              "guarded_exchange": 2.2,
+              "personal_boundary": 1.79,
+              "candid_frustration": 0.25,
+              "reflective_concern": 2.16,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.2079626670919876,
+              "curious_question": 0.23607784472304183,
+              "playful_levity": 0.20645296125088336,
+              "guarded_exchange": 0.13309610693887203,
+              "personal_boundary": 0.08811017277744625,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.12830024721776886,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.864957851357758
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "George",
+              "speech": "I should be clear: I need to keep my own pace here. No rush to define anything."
+            },
+            {
+              "line": 2,
+              "speaker": "Susan",
+              "speech": "That's fair. I'm not trying to push."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I should be clear: I need to keep my own pace here. No rush to define anything.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 2,
+              "quote": "That's fair. I'm not trying to push.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.32974425414002567,
+              "warmth": 0,
+              "after": 0.5436563656918091,
+              "unclipped": 0.5436563656918091,
+              "clipped": false,
+              "change": 0.2139121115517834
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 2,
+            "time": 1.0,
+            "continuous_class": [
+              0.27635465813520727,
+              -0.16829419696157932
+            ],
+            "held_partner_oracle": [
+              0.4415555935267044,
+              -0.17747449784826386
+            ],
+            "self_only": [
+              0.5436563656918091,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 3,
+          "accepted_step": 3,
+          "time": 1.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            0.5436563656918091,
+            0
+          ],
+          "affection_after": [
+            0.896337814067613,
+            0
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.5100000000000002,
+              "curious_question": 2.89,
+              "playful_levity": 1.52,
+              "guarded_exchange": 2.0100000000000002,
+              "personal_boundary": 2.42,
+              "candid_frustration": 0.61,
+              "reflective_concern": 2.51,
+              "angry_confrontation": 0.04
+            },
+            "probabilities": {
+              "warm_company": 0.18999553668363536,
+              "curious_question": 0.2518788149291901,
+              "playful_levity": 0.06967598735795798,
+              "guarded_exchange": 0.12183948949311205,
+              "personal_boundary": 0.1766146348524693,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.18999553668363528,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.24609824595972896
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "What does this feel like to you? Just sitting here, no pressure to be anything."
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "Like a ceasefire. Temporary, but I'm not complaining."
+            },
+            {
+              "line": 3,
+              "speaker": "Susan",
+              "speech": "I wasn't looking to negotiate terms, you know."
+            },
+            {
+              "line": 4,
+              "speaker": "George",
+              "speech": "Neither was I. That's why it's working."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "Like a ceasefire. Temporary, but I'm not complaining.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 1,
+              "quote": "What does this feel like to you? Just sitting here, no pressure to be anything.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.5436563656918091,
+              "warmth": 0,
+              "after": 0.896337814067613,
+              "unclipped": 0.896337814067613,
+              "clipped": false,
+              "change": 0.35268144837580395
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 3,
+            "time": 1.5,
+            "continuous_class": [
+              0.21364643765435148,
+              -0.1994989973208109
+            ],
+            "held_partner_oracle": [
+              0.4977391357221116,
+              -0.2813823123472248
+            ],
+            "self_only": [
+              0.896337814067613,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 4,
+          "accepted_step": 4,
+          "time": 2.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "George",
+          "affection_before": [
+            0.896337814067613,
+            0
+          ],
+          "affection_after": [
+            1,
+            0
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "reflective_concern",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.7399999999999998,
+              "curious_question": 2.9200000000000004,
+              "playful_levity": 2.55,
+              "guarded_exchange": 2.49,
+              "personal_boundary": 2.64,
+              "candid_frustration": 0.26,
+              "reflective_concern": 2.22,
+              "angry_confrontation": 0.0
+            },
+            "probabilities": {
+              "warm_company": 0.18475880161241892,
+              "curious_question": 0.20983103069797662,
+              "playful_levity": 0.1600237236246942,
+              "guarded_exchange": 0.15258178990318597,
+              "personal_boundary": 0.17151885339095252,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.12128580077077171,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.9233102230355144
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "George",
+              "speech": "I keep thinking about the 'temporary' part of that ceasefire. What happens when the truce ends?"
+            },
+            {
+              "line": 2,
+              "speaker": "Susan",
+              "speech": "Then we figure out the next step together. No ambush."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I keep thinking about the 'temporary' part of that ceasefire. What happens when the truce ends?",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 2,
+              "quote": "Then we figure out the next step together. No ambush.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.896337814067613,
+              "warmth": 0,
+              "after": 1,
+              "unclipped": 1.4778112197861302,
+              "clipped": true,
+              "change": 0.10366218593238696
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 4,
+            "time": 2.0,
+            "continuous_class": [
+              0.09863011805570787,
+              -0.18185948536513635
+            ],
+            "held_partner_oracle": [
+              0.45555571788807936,
+              -0.36651208890721176
+            ],
+            "self_only": [
+              1,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 5,
+          "accepted_step": 5,
+          "time": 2.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            1,
+            0
+          ],
+          "affection_after": [
+            1,
+            0
+          ],
+          "native_bonds_before": [
+            1,
+            1
+          ],
+          "native_bonds_after": [
+            1,
+            1
+          ],
+          "selected_intent": "curious_question",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.47,
+              "curious_question": 2.94,
+              "playful_levity": 1.51,
+              "guarded_exchange": 1.8599999999999999,
+              "personal_boundary": 2.2399999999999998,
+              "candid_frustration": 0.45,
+              "reflective_concern": 2.5100000000000002,
+              "angry_confrontation": 0.03
+            },
+            "probabilities": {
+              "warm_company": 0.1918407390753383,
+              "curious_question": 0.2717950814259525,
+              "playful_levity": 0.07169697408016502,
+              "guarded_exchange": 0.10878595304054159,
+              "personal_boundary": 0.1577767366100767,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.19810451576792587,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.36462908727116883
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "Earlier you wondered what happens when our 'truce' ends. What would need to be different for it to feel like more than a ceasefire to you?"
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "I think the fact that I'm still calling it a ceasefire answers that. I'm not there yet."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 1,
+              "quote": "Earlier you wondered what happens when our 'truce' ends. What would need to be different for it to feel like more than a ceasefire to you?",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "I think the fact that I'm still calling it a ceasefire answers that. I'm not there yet.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 1,
+              "warmth": 0,
+              "after": 1,
+              "unclipped": 1.6487212707001282,
+              "clipped": true,
+              "change": 0
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 5,
+            "time": 2.5,
+            "continuous_class": [
+              -0.04053429428859545,
+              -0.11969442882079129
+            ],
+            "held_partner_oracle": [
+              0.2755560259854538,
+              -0.40154802685910673
+            ],
+            "self_only": [
+              1,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        }
+      ]
+    },
+    {
+      "case": "susan-george",
+      "seed": 20260928,
+      "characters": [
+        "Susan",
+        "George"
+      ],
+      "planned_attempts": 5,
+      "attempted": 5,
+      "accepted": 5,
+      "initial_affection": [
+        0.2,
+        0
+      ],
+      "encounters": [
+        {
+          "attempt": 1,
+          "accepted_step": 1,
+          "time": 0.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            0.2,
+            0
+          ],
+          "affection_after": [
+            0.32974425414002567,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "personal_boundary",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.3400000000000003,
+              "curious_question": 2.86,
+              "playful_levity": 1.73,
+              "guarded_exchange": 1.92,
+              "personal_boundary": 2.02,
+              "candid_frustration": 0.31,
+              "reflective_concern": 1.6,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.20298870431401048,
+              "curious_question": 0.30323003977771923,
+              "playful_levity": 0.11095129175641058,
+              "guarded_exchange": 0.13666037686886698,
+              "personal_boundary": 0.15126654779072396,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.09490303949226875,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.8478224489372224
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "I need us to speak plainly, without assuming where this is heading. I won't guess your feelings."
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "That's... a relief, actually. I barely know my own feelings most days."
+            },
+            {
+              "line": 3,
+              "speaker": "Susan",
+              "speech": "Good. Then let's just sit with it, whatever it is."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "That's... a relief, actually. I barely know my own feelings most days.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I need us to speak plainly, without assuming where this is heading. I won't guess your feelings.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.2,
+              "warmth": 0,
+              "after": 0.32974425414002567,
+              "unclipped": 0.32974425414002567,
+              "clipped": false,
+              "change": 0.12974425414002566
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 1,
+            "time": 0.5,
+            "continuous_class": [
+              0.27140162009891516,
+              -0.0958851077208406
+            ],
+            "held_partner_oracle": [
+              0.32974425414002567,
+              -0.07869386805747332
+            ],
+            "self_only": [
+              0.32974425414002567,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 2,
+          "accepted_step": 2,
+          "time": 1.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "George",
+          "affection_before": [
+            0.32974425414002567,
+            0
+          ],
+          "affection_after": [
+            0.5436563656918091,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "guarded_exchange",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 2.17,
+              "curious_question": 2.91,
+              "playful_levity": 2.03,
+              "guarded_exchange": 2.7800000000000002,
+              "personal_boundary": 2.48,
+              "candid_frustration": 0.43000000000000005,
+              "reflective_concern": 2.46,
+              "angry_confrontation": 0.01
+            },
+            "probabilities": {
+              "warm_company": 0.12648710792595955,
+              "curious_question": 0.22746405288449917,
+              "playful_levity": 0.11069267197266591,
+              "guarded_exchange": 0.20759475990039836,
+              "personal_boundary": 0.16520765116860023,
+              "candid_frustration": 0.0,
+              "reflective_concern": 0.16255375614787673,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.6133276564069092
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "George",
+              "speech": "Quiet in here today."
+            },
+            {
+              "line": 2,
+              "speaker": "Susan",
+              "speech": "It is. That plain talk I asked for... we still haven't started."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 1,
+              "quote": "Quiet in here today.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 2,
+              "quote": "It is. That plain talk I asked for... we still haven't started.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.32974425414002567,
+              "warmth": 0,
+              "after": 0.5436563656918091,
+              "unclipped": 0.5436563656918091,
+              "clipped": false,
+              "change": 0.2139121115517834
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 2,
+            "time": 1.0,
+            "continuous_class": [
+              0.27635465813520727,
+              -0.16829419696157932
+            ],
+            "held_partner_oracle": [
+              0.4415555935267044,
+              -0.17747449784826386
+            ],
+            "self_only": [
+              0.5436563656918091,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 3,
+          "accepted_step": 3,
+          "time": 1.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            0.5436563656918091,
+            0
+          ],
+          "affection_after": [
+            0.896337814067613,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "guarded_exchange",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.96,
+              "curious_question": 2.86,
+              "playful_levity": 1.41,
+              "guarded_exchange": 1.89,
+              "personal_boundary": 2.77,
+              "candid_frustration": 1.06,
+              "reflective_concern": 2.25,
+              "angry_confrontation": 0.03
+            },
+            "probabilities": {
+              "warm_company": 0.12218674062670959,
+              "curious_question": 0.26016208445185174,
+              "playful_levity": 0.06323392832152262,
+              "guarded_exchange": 0.11361496673070318,
+              "personal_boundary": 0.24404587727891505,
+              "candid_frustration": 0.035737458810956614,
+              "reflective_concern": 0.16101894377934126,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.4982873953413218
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "We keep circling it. The plain talk I asked for."
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "I remember. Just... trying to find the right first sentence."
+            },
+            {
+              "line": 3,
+              "speaker": "Susan",
+              "speech": "Then let's start with now. How this silence feels."
+            },
+            {
+              "line": 4,
+              "speaker": "George",
+              "speech": "It feels... heavy. Like we're both waiting to be misunderstood."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "I remember. Just... trying to find the right first sentence.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 1,
+              "quote": "We keep circling it. The plain talk I asked for.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.5436563656918091,
+              "warmth": 0,
+              "after": 0.896337814067613,
+              "unclipped": 0.896337814067613,
+              "clipped": false,
+              "change": 0.35268144837580395
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 3,
+            "time": 1.5,
+            "continuous_class": [
+              0.21364643765435148,
+              -0.1994989973208109
+            ],
+            "held_partner_oracle": [
+              0.4977391357221116,
+              -0.2813823123472248
+            ],
+            "self_only": [
+              0.896337814067613,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 4,
+          "accepted_step": 4,
+          "time": 2.0,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "George",
+          "affection_before": [
+            0.896337814067613,
+            0
+          ],
+          "affection_after": [
+            1,
+            0
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "reflective_concern",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.6900000000000002,
+              "curious_question": 2.84,
+              "playful_levity": 1.77,
+              "guarded_exchange": 2.89,
+              "personal_boundary": 2.3200000000000003,
+              "candid_frustration": 1.0499999999999998,
+              "reflective_concern": 2.6299999999999994,
+              "angry_confrontation": 0.03
+            },
+            "probabilities": {
+              "warm_company": 0.07976039208567799,
+              "curious_question": 0.22524260999483361,
+              "playful_levity": 0.08749040032394544,
+              "guarded_exchange": 0.2332435036374045,
+              "personal_boundary": 0.15031068042503878,
+              "candid_frustration": 0.03078877920046915,
+              "reflective_concern": 0.19316363433263042,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.9230681364424527
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "George",
+              "speech": "I'm still circling that first sentence. Worried I'll pick the wrong one and we'll be back here again next week."
+            },
+            {
+              "line": 2,
+              "speaker": "Susan",
+              "speech": "Then let's stop circling. I'll start: I feel like we're standing still while you find the perfect words."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 1,
+              "quote": "I'm still circling that first sentence. Worried I'll pick the wrong one and we'll be back here again next week.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 0,
+              "line": 2,
+              "quote": "Then let's stop circling. I'll start: I feel like we're standing still while you find the perfect words.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 0.896337814067613,
+              "warmth": 0,
+              "after": 1,
+              "unclipped": 1.4778112197861302,
+              "clipped": true,
+              "change": 0.10366218593238696
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 0,
+              "after": 0.0,
+              "unclipped": 0.0,
+              "clipped": false,
+              "change": 0
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 4,
+            "time": 2.0,
+            "continuous_class": [
+              0.09863011805570787,
+              -0.18185948536513635
+            ],
+            "held_partner_oracle": [
+              0.45555571788807936,
+              -0.36651208890721176
+            ],
+            "self_only": [
+              1,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        },
+        {
+          "attempt": 5,
+          "accepted_step": 5,
+          "time": 2.5,
+          "accepted": true,
+          "status": "accepted",
+          "failure_stage": null,
+          "reason": null,
+          "focal_character": "Susan",
+          "affection_before": [
+            1,
+            0
+          ],
+          "affection_after": [
+            1,
+            -0.3934693402873666
+          ],
+          "native_bonds_before": [
+            0,
+            0
+          ],
+          "native_bonds_after": [
+            0,
+            0
+          ],
+          "selected_intent": "warm_company",
+          "rating": {
+            "expected_scores": {
+              "warm_company": 1.8199999999999998,
+              "curious_question": 2.82,
+              "playful_levity": 1.3599999999999999,
+              "guarded_exchange": 1.6,
+              "personal_boundary": 1.9100000000000001,
+              "candid_frustration": 1.46,
+              "reflective_concern": 2.62,
+              "angry_confrontation": 0.05
+            },
+            "probabilities": {
+              "warm_company": 0.11696947225312072,
+              "curious_question": 0.2808199586842523,
+              "playful_levity": 0.06531419390151313,
+              "guarded_exchange": 0.09040026837579676,
+              "personal_boundary": 0.1288239136959938,
+              "candid_frustration": 0.07527234846478449,
+              "reflective_concern": 0.24239984462453876,
+              "angry_confrontation": 0.0
+            }
+          },
+          "categorical_draws": [
+            0.10987853724509478
+          ],
+          "transcript": [
+            {
+              "line": 1,
+              "speaker": "Susan",
+              "speech": "We could just sit for a bit. No perfect sentences required."
+            },
+            {
+              "line": 2,
+              "speaker": "George",
+              "speech": "That's... a novel approach. I think I can manage that."
+            }
+          ],
+          "observations": [
+            {
+              "listener": "George",
+              "speaker": "Susan",
+              "warmth": 1,
+              "line": 1,
+              "quote": "We could just sit for a bit. No perfect sentences required.",
+              "matches_utterance": true,
+              "applied": true
+            },
+            {
+              "listener": "Susan",
+              "speaker": "George",
+              "warmth": 0,
+              "line": 2,
+              "quote": "That's... a novel approach. I think I can manage that.",
+              "matches_utterance": true,
+              "applied": true
+            }
+          ],
+          "updates": [
+            {
+              "character": "Susan",
+              "before": 1,
+              "warmth": 0,
+              "after": 1,
+              "unclipped": 1.6487212707001282,
+              "clipped": true,
+              "change": 0
+            },
+            {
+              "character": "George",
+              "before": 0,
+              "warmth": 1,
+              "after": -0.3934693402873666,
+              "unclipped": -0.3934693402873666,
+              "clipped": false,
+              "change": -0.3934693402873666
+            }
+          ],
+          "matched_mechanical_control": {
+            "accepted_step": 5,
+            "time": 2.5,
+            "continuous_class": [
+              -0.04053429428859545,
+              -0.11969442882079129
+            ],
+            "held_partner_oracle": [
+              0.2755560259854538,
+              -0.40154802685910673
+            ],
+            "self_only": [
+              1,
+              0.0
+            ]
+          },
+          "recorded_requests": 3
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two planned runs per pair and at most five attempted encounters per run: no population frequency, confidence interval, or full-cycle claim.",
+    "Affection, coefficients, and clipping are new authored research mechanics. Native broad relationship scores remain separate.",
+    "Warmth scores are uncalibrated automated expression judgments, not measurements of another person's hidden feelings.",
+    "The joint writer sees both private numerical states; character knowledge boundaries are prompt instructions, not independent agent processes.",
+    "The appraiser sees the selected intention and context; the warmth judgment is not blinded.",
+    "Continuous, held-partner, and self-only controls are mechanical calculations, not regenerated conversations or a causal ablation.",
+    "Acceptance verifies the implemented checks; it is not proof of narrative truth, believable emotion, or human engagement."
+  ]
+}
