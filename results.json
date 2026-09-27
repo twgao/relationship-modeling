@@ -1,0 +1,969 @@
+{
+  "protocol": {
+    "seed": 20260927,
+    "generator": "NumPy PCG64 with SeedSequence([seed, case_index, stream])",
+    "streams": {
+      "initial_state": 0,
+      "temporal_shocks": 1,
+      "parameters": 2
+    },
+    "case_order": [
+      "romeo_juliet",
+      "george_susan",
+      "cautious_fading",
+      "cautious_growing"
+    ],
+    "replicates_per_case_per_arm": 10000,
+    "initial_state_covariance": [
+      [
+        0.04000000000000001,
+        0.0
+      ],
+      [
+        0.0,
+        0.04000000000000001
+      ]
+    ],
+    "temporal_noise_sd_per_sqrt_time": 0.15,
+    "observation_intervals": 1000,
+    "time_step": 0.012566370614359173,
+    "duration": 12.566370614359172,
+    "trajectory_total": 80000,
+    "paired_initial_states_between_arms": true,
+    "parameter_matrices_total_separate_experiment": 40000,
+    "parameter_entry_sd": 0.05,
+    "parameter_distribution": "independent additive normal perturbations, fixed within each matrix; no truncation or rejection",
+    "time_fraction_estimator": "1,000 equally spaced left endpoints per path, excluding T",
+    "trajectory_plot_bands": "empirical pointwise 2.5th\u201397.5th percentiles of 10,000 paths",
+    "state_transition": "exact matrix exponential with exact integrated Gaussian covariance",
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.3"
+  },
+  "deterministic_checks": {
+    "romeo_juliet": {
+      "matrix": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "type": "center",
+      "independent_ode_max_relative_error": 2.1748674504813496e-11,
+      "mutual_love_share_one_period_20000_midpoints": 0.25,
+      "one_period_return_error": 7.622052296147809e-16
+    },
+    "george_susan": {
+      "matrix": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          -1.0,
+          -1.0
+        ]
+      ],
+      "type": "center",
+      "independent_ode_max_relative_error": 2.4644384484913055e-11,
+      "mutual_love_share_one_period_20000_midpoints": 0.125,
+      "one_period_return_error": 2.5121479338940403e-15
+    },
+    "cautious_fading": {
+      "matrix": [
+        [
+          -1.0,
+          0.5
+        ],
+        [
+          0.5,
+          -1.0
+        ]
+      ],
+      "type": "stable_node",
+      "independent_ode_max_relative_error": 6.356401746386343e-12
+    },
+    "cautious_growing": {
+      "matrix": [
+        [
+          -0.5,
+          1.0
+        ],
+        [
+          1.0,
+          -0.5
+        ]
+      ],
+      "type": "saddle",
+      "independent_ode_max_relative_error": 2.314595624775108e-11
+    },
+    "eager_and_cautious": {
+      "matrix": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "type": "saddle",
+      "independent_ode_max_relative_error": 2.935703513335382e-11
+    },
+    "cautious_boundary": {
+      "matrix": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "type": "line_of_equilibria",
+      "independent_ode_max_relative_error": 6.8996928055095274e-12
+    },
+    "exercise_5_3_2": {
+      "matrix": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "type": "unstable_spiral",
+      "independent_ode_max_relative_error": 1.1726664449502508e-10
+    },
+    "out_of_touch": {
+      "matrix": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "type": "saddle",
+      "independent_ode_max_relative_error": 2.570338699891617e-11
+    },
+    "fire_and_water": {
+      "matrix": [
+        [
+          0.5,
+          1.0
+        ],
+        [
+          -1.0,
+          -0.5
+        ]
+      ],
+      "type": "center",
+      "independent_ode_max_relative_error": 2.369732155854956e-11
+    },
+    "peas_in_a_pod": {
+      "matrix": [
+        [
+          1.0,
+          -0.5
+        ],
+        [
+          -0.5,
+          1.0
+        ]
+      ],
+      "type": "unstable_node",
+      "independent_ode_max_relative_error": 3.138450494255388e-11
+    },
+    "romeo_robot": {
+      "matrix": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "type": "line_of_equilibria",
+      "independent_ode_max_relative_error": 7.34871288572381e-12
+    },
+    "exact_noise_transition_composition": "passed",
+    "forward_euler_center_radius_factor_at_T": 1.0821508643186986
+  },
+  "ensembles": {
+    "romeo_juliet": {
+      "initial_only": {
+        "n": 10000,
+        "sigma": 0.0,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.9999999999999991,
+          6.107804178943768e-16
+        ],
+        "empirical_endpoint_mean": [
+          1.0003403881282908,
+          0.0028740310879804025
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            0.03999999999999994,
+            1.2454815720909648e-32
+          ],
+          [
+            1.1883383102901434e-32,
+            0.03999999999999994
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            0.03935749011175347,
+            -0.0004233120090796285
+          ],
+          [
+            -0.0004233120090796285,
+            0.040196572858661496
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            0.6123904767023838,
+            -0.3960780807536858
+          ],
+          [
+            0.9991460993424681,
+            0.005960683014748489
+          ],
+          [
+            1.3960325512558962,
+            0.3905686476882739
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          0.17019406414586782,
+          1.437015543989897
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            -1.1357509555890237,
+            -1.0582271073750218
+          ],
+          [
+            -1.0582271073750218,
+            0.3474776282074707
+          ]
+        ],
+        "both_positive_count": 5116,
+        "both_negative_count": 0,
+        "mixed_sign_count": 4884,
+        "predicted_both_positive_probability": 0.4999998566742153,
+        "both_positive_wilson_95": [
+          0.5018002435975278,
+          0.5213908476402725
+        ],
+        "mutual_love_time_fraction_mean": 0.25,
+        "mutual_love_time_fraction_sd": 0.0,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "coarsening_time_fraction_mean_change": -4.3200000000021e-05,
+        "coarsening_time_fraction_mean_absolute_change": 0.0020000000000000018
+      },
+      "noise": {
+        "n": 10000,
+        "sigma": 0.15,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.9999999999999991,
+          6.107804178943768e-16
+        ],
+        "empirical_endpoint_mean": [
+          0.9940648568642031,
+          0.002017068325013285
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            0.3227433388230884,
+            1.2634182096203131e-17
+          ],
+          [
+            1.2478669451137375e-17,
+            0.3227433388230884
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            0.3225706210823224,
+            0.0029478622543934276
+          ],
+          [
+            0.0029478622543934276,
+            0.3263931061087902
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            -0.09798495884277282,
+            -1.1186210155887966
+          ],
+          [
+            0.9887815827334534,
+            -0.0023249620755729167
+          ],
+          [
+            2.1110043690324596,
+            1.1042555459596954
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          -1.0447263615529685,
+          0.3550520019449546
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            -0.037839287256949045,
+            0.9133309670603215
+          ],
+          [
+            0.9133309670603215,
+            0.799597031157044
+          ]
+        ],
+        "both_positive_count": 4799,
+        "both_negative_count": 210,
+        "mixed_sign_count": 4991,
+        "predicted_both_positive_probability": 0.4804081284372726,
+        "both_positive_wilson_95": [
+          0.47011769727122604,
+          0.48969773946327505
+        ],
+        "mutual_love_time_fraction_mean": 0.23669350000000003,
+        "mutual_love_time_fraction_sd": 0.030568614652453207,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.163,
+          0.24,
+          0.287
+        ],
+        "coarsening_time_fraction_mean_change": 6.0999999999811205e-06,
+        "coarsening_time_fraction_mean_absolute_change": 0.0010701
+      }
+    },
+    "george_susan": {
+      "initial_only": {
+        "n": 10000,
+        "sigma": 0.0,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.9999999999999964,
+          -1.1832913578315146e-30
+        ],
+        "empirical_endpoint_mean": [
+          0.9987103840593905,
+          -0.003642721514846841
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            0.03999999999999973,
+            9.466330862652085e-32
+          ],
+          [
+            9.466330862652088e-32,
+            0.03999999999999973
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            0.04019950844657075,
+            0.0001375160557099621
+          ],
+          [
+            0.0001375160557099621,
+            0.04014169573491348
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            0.6050514809738123,
+            -0.38977259280243187
+          ],
+          [
+            1.0001913208288125,
+            -0.005454622652288962
+          ],
+          [
+            1.3882901755704637,
+            0.39889301031808183
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          -0.6448079703029763,
+          -1.821360757423427
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            0.3526668040230913,
+            0.3437729493381847
+          ],
+          [
+            0.3437729493381847,
+            0.2504725129918157
+          ]
+        ],
+        "both_positive_count": 4885,
+        "both_negative_count": 0,
+        "mixed_sign_count": 5115,
+        "predicted_both_positive_probability": 0.4999998566742141,
+        "both_positive_wilson_95": [
+          0.4787090686987251,
+          0.4982997632638003
+        ],
+        "mutual_love_time_fraction_mean": 0.1249708,
+        "mutual_love_time_fraction_sd": 0.000999623571515035,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.124,
+          0.124,
+          0.126
+        ],
+        "coarsening_time_fraction_mean_change": -3.999999999948489e-06,
+        "coarsening_time_fraction_mean_absolute_change": 0.0009708000000000009
+      },
+      "noise": {
+        "n": 10000,
+        "sigma": 0.15,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.9999999999999964,
+          -1.1832913578315146e-30
+        ],
+        "empirical_endpoint_mean": [
+          1.0087797960616902,
+          -0.01482070914880201
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            0.8882300164692409,
+            -0.4241150082346203
+          ],
+          [
+            -0.4241150082346203,
+            0.46411500823462015
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            0.8913110273996071,
+            -0.42373579101808684
+          ],
+          [
+            -0.42373579101808684,
+            0.4614470862819407
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            -0.8573380754602709,
+            -1.328729031353953
+          ],
+          [
+            1.013201864012651,
+            -0.014487658563962509
+          ],
+          [
+            2.8481251912100807,
+            1.3371501075652754
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          0.9315833233408781,
+          -2.175485425925953
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            0.24526246000128868,
+            0.04927918434334493
+          ],
+          [
+            0.04927918434334493,
+            -0.40645343143460766
+          ]
+        ],
+        "both_positive_count": 3613,
+        "both_negative_count": 125,
+        "mixed_sign_count": 6262,
+        "predicted_both_positive_probability": 0.3696071338548056,
+        "both_positive_wilson_95": [
+          0.351939696544257,
+          0.3707668246037686
+        ],
+        "mutual_love_time_fraction_mean": 0.11272049999999999,
+        "mutual_love_time_fraction_sd": 0.025141300448640776,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.059,
+          0.118,
+          0.152
+        ],
+        "coarsening_time_fraction_mean_change": 7.010000000000349e-05,
+        "coarsening_time_fraction_mean_absolute_change": 0.0009937000000000001
+      }
+    },
+    "cautious_fading": {
+      "initial_only": {
+        "n": 10000,
+        "sigma": 0.0,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.0009337246220600654,
+          0.0009337181096479293
+        ],
+        "empirical_endpoint_mean": [
+          0.0009341701737304654,
+          0.0009341635989268685
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            6.97468471250286e-08,
+            6.974684712333214e-08
+          ],
+          [
+            6.974684712333214e-08,
+            6.97468471250286e-08
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            6.784300959632119e-08,
+            6.784300473700037e-08
+          ],
+          [
+            6.784300473700037e-08,
+            6.784299988109589e-08
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            0.0004286560783287954,
+            0.0004286510678628747
+          ],
+          [
+            0.0009352400258014365,
+            0.0009352329598756514
+          ],
+          [
+            0.0014458226009572588,
+            0.0014458171839926914
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          0.16870804237126064,
+          0.16868441785829455
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            -1.9300501310247582,
+            -1.930055055553804
+          ],
+          [
+            -1.930055055553804,
+            -1.9300599800121707
+          ]
+        ],
+        "both_positive_count": 9997,
+        "both_negative_count": 3,
+        "mixed_sign_count": 0,
+        "predicted_both_positive_probability": 0.9997965334865828,
+        "both_positive_wilson_95": [
+          0.9991182642277636,
+          0.9998979678005822
+        ],
+        "mutual_love_time_fraction_mean": 0.9855254000000001,
+        "mutual_love_time_fraction_sd": 0.02775724412293357,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.928,
+          0.999,
+          1.0
+        ],
+        "coarsening_time_fraction_mean_change": -0.00025680000000027903,
+        "coarsening_time_fraction_mean_absolute_change": 0.0002568000000000002
+      },
+      "noise": {
+        "n": 10000,
+        "sigma": 0.15,
+        "initial_mean": [
+          1.0,
+          0.0
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          0.0009337246220600654,
+          0.0009337181096479293
+        ],
+        "empirical_endpoint_mean": [
+          0.0006406328072115979,
+          0.0018816668028993717
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            0.015000030514245618,
+            0.00750003051424561
+          ],
+          [
+            0.00750003051424561,
+            0.015000030514245618
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            0.014952809117013702,
+            0.0074516891454430864
+          ],
+          [
+            0.0074516891454430864,
+            0.014913703701054862
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            -0.23971170177558176,
+            -0.23977796274342625
+          ],
+          [
+            -0.0003057358925551996,
+            0.0014249838738128215
+          ],
+          [
+            0.24278516971216269,
+            0.2389049764024864
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          -0.23930822131147148,
+          0.7739960796715594
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            -0.2225922180480328,
+            -0.28823711478183395
+          ],
+          [
+            -0.28823711478183395,
+            -0.4069273242969823
+          ]
+        ],
+        "both_positive_count": 3345,
+        "both_negative_count": 3312,
+        "mixed_sign_count": 3343,
+        "predicted_both_positive_probability": 0.33638028572156486,
+        "both_positive_wilson_95": [
+          0.325317697517828,
+          0.3438094059428659
+        ],
+        "mutual_love_time_fraction_mean": 0.5113475000000002,
+        "mutual_love_time_fraction_sd": 0.18569144588552672,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.17197500000000002,
+          0.505,
+          0.8810249999999996
+        ],
+        "coarsening_time_fraction_mean_change": 0.00011429999999990059,
+        "coarsening_time_fraction_mean_absolute_change": 0.0030026999999999996
+      }
+    },
+    "cautious_growing": {
+      "initial_only": {
+        "n": 10000,
+        "sigma": 0.0,
+        "initial_mean": [
+          0.2,
+          -0.1
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          26.774582777215073,
+          26.774582775261347
+        ],
+        "empirical_endpoint_mean": [
+          26.12690140003803,
+          26.126901398065513
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            5735.026262733051,
+            5735.02626273305
+          ],
+          [
+            5735.02626273305,
+            5735.026262733049
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            5734.9106983787115,
+            5734.91069837653
+          ],
+          [
+            5734.91069837653,
+            5734.910698374344
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            -123.88171931456787,
+            -123.88171931457491
+          ],
+          [
+            25.81609415389984,
+            25.81609414998718
+          ],
+          [
+            175.85811622164346,
+            175.85811621731642
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          -0.8552512240388219,
+          -0.8552512240636343
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            -0.001424792999275173,
+            -0.0014247930261643326
+          ],
+          [
+            -0.0014247930261643326,
+            -0.0014247930530983449
+          ]
+        ],
+        "both_positive_count": 6380,
+        "both_negative_count": 3620,
+        "mixed_sign_count": 0,
+        "predicted_both_positive_probability": 0.6381631950889528,
+        "both_positive_wilson_95": [
+          0.6285294960360455,
+          0.6473645204136478
+        ],
+        "mutual_love_time_fraction_mean": 0.6196438,
+        "mutual_love_time_fraction_sd": 0.4678843742852822,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.0,
+          0.95,
+          1.0
+        ],
+        "coarsening_time_fraction_mean_change": -0.0001893999999998952,
+        "coarsening_time_fraction_mean_absolute_change": 0.00018940000000000016,
+        "scaled_common_mode": {
+          "theoretical_mean": 0.07071067811865475,
+          "theoretical_sd": 0.2,
+          "empirical_mean": 0.06900017567055224,
+          "empirical_sd": 0.19999798492747162,
+          "positive_count": 6380,
+          "positive_wilson_95": [
+            0.6285294960360455,
+            0.6473645204136478
+          ],
+          "predicted_positive_probability": 0.6381631950841185
+        }
+      },
+      "noise": {
+        "n": 10000,
+        "sigma": 0.15,
+        "initial_mean": [
+          0.2,
+          -0.1
+        ],
+        "initial_sd_each": 0.2,
+        "theoretical_endpoint_mean": [
+          26.774582777215073,
+          26.774582775261347
+        ],
+        "empirical_endpoint_mean": [
+          26.836339029656934,
+          26.83496813776941
+        ],
+        "theoretical_endpoint_covariance": [
+          [
+            8960.971035520393,
+            8960.963535520394
+          ],
+          [
+            8960.963535520394,
+            8960.971035520393
+          ]
+        ],
+        "empirical_endpoint_covariance": [
+          [
+            8971.101958526753,
+            8970.947992358551
+          ],
+          [
+            8970.947992358551,
+            8970.809022568363
+          ]
+        ],
+        "endpoint_quantiles_025_50_975": [
+          [
+            -159.70671192881323,
+            -159.74183613537352
+          ],
+          [
+            26.62640266162095,
+            26.617929646722708
+          ],
+          [
+            210.63964574476634,
+            210.61133781792523
+          ]
+        ],
+        "mean_error_in_monte_carlo_se": [
+          0.06523841438965979,
+          0.0637902260354846
+        ],
+        "covariance_error_in_monte_carlo_se": [
+          [
+            0.07993872692935172,
+            0.07878305878261824
+          ],
+          [
+            0.07878305878261824,
+            0.07762729611787862
+          ]
+        ],
+        "both_positive_count": 6155,
+        "both_negative_count": 3843,
+        "mixed_sign_count": 2,
+        "predicted_both_positive_probability": 0.6111534989014107,
+        "both_positive_wilson_95": [
+          0.6059226043150087,
+          0.6249886920613651
+        ],
+        "mutual_love_time_fraction_mean": 0.5893616,
+        "mutual_love_time_fraction_sd": 0.4567231389452529,
+        "mutual_love_time_fraction_quantiles_025_50_975": [
+          0.0,
+          0.91,
+          1.0
+        ],
+        "coarsening_time_fraction_mean_change": -0.0001756000000000535,
+        "coarsening_time_fraction_mean_absolute_change": 0.0007306000000000001,
+        "scaled_common_mode": {
+          "theoretical_mean": 0.07071067811865475,
+          "theoretical_sd": 0.24999984306954473,
+          "empirical_mean": 0.07087196385169137,
+          "empirical_sd": 0.25013908124671796,
+          "positive_count": 6157,
+          "positive_wilson_95": [
+            0.6061234584946372,
+            0.6251876842823884
+          ],
+          "predicted_positive_probability": 0.6113513626587865
+        }
+      }
+    }
+  },
+  "parameter_sensitivity": {
+    "romeo_juliet": {
+      "n": 10000,
+      "coefficient_sd": 0.05,
+      "base_matrix": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "counts": {
+        "stable_spiral": 4903,
+        "unstable_spiral": 5097
+      }
+    },
+    "george_susan": {
+      "n": 10000,
+      "coefficient_sd": 0.05,
+      "base_matrix": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          -1.0,
+          -1.0
+        ]
+      ],
+      "counts": {
+        "stable_spiral": 4946,
+        "unstable_spiral": 5054
+      }
+    },
+    "cautious_fading": {
+      "n": 10000,
+      "coefficient_sd": 0.05,
+      "base_matrix": [
+        [
+          -1.0,
+          0.5
+        ],
+        [
+          0.5,
+          -1.0
+        ]
+      ],
+      "counts": {
+        "stable_node": 10000
+      }
+    },
+    "cautious_growing": {
+      "n": 10000,
+      "coefficient_sd": 0.05,
+      "base_matrix": [
+        [
+          -0.5,
+          1.0
+        ],
+        [
+          1.0,
+          -0.5
+        ]
+      ],
+      "counts": {
+        "saddle": 10000
+      }
+    }
+  },
+  "verification": "All closed-form, independent ODE, continuous covariance, transition-composition, and Monte Carlo checks passed."
+}
