@@ -1,3 +1,5 @@
 # Testing relationship models in Fable
 
-[Writeup](article.md) · [Conversations](conversations/)
+[Writeup](article.md)
+
+[Conversations](conversations/)
