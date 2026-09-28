@@ -1,4 +1,4 @@
-# Love, feedback, and George Costanza
+# Testing relationship models in Fable
 
 *Influenced by PHYS 4410 Nonlinear Dynamics.*
 

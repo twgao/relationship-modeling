@@ -188,15 +188,15 @@ def save_figure(fig, directory, name):
 def noise_overlay(data, directory):
     fig, axes = plt.subplots(2, 3, figsize=(12.6, 9.65))
     fig.subplots_adjust(left=0.07, right=0.985, top=0.77, bottom=0.14, wspace=0.25, hspace=0.44)
-    fig.text(0.07, 0.98, "Same rules. Different days.", fontsize=22, weight="bold", va="top")
-    fig.text(0.07, 0.92, "Two ideal cycles, with a little everyday randomness added.", fontsize=13, color=GRAY)
+    fig.text(0.07, 0.98, "Ideal and noisy relationship dynamics", fontsize=22, weight="bold", va="top")
+    fig.text(0.07, 0.92, "Two relationship models compared with numerical simulations.", fontsize=13, color=GRAY)
     handles = [Line2D([0], [0], color=INK, lw=2.3, label="Ideal mathematical orbit"),
                Line2D([0], [0], color=MEAN, lw=2, linestyle="--", label="Average of 2,000 noisy runs"),
                Line2D([0], [0], color=PATH_COLORS[0], lw=1.8, label="Three individual runs (three colors)"),
                Line2D([0], [0], color=MEAN, marker="o", markersize=4, lw=0, label="Noise-free numerical check")]
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.062, 0.892), frameon=False,
                ncol=2, fontsize=10.5, columnspacing=2.2, handlelength=3)
-    titles = ("No noise  ·  $\\sigma=0$", "Small surprises  ·  $\\sigma=0.05$", "Bigger surprises  ·  $\\sigma=0.15$")
+    titles = ("No noise  ·  $\\sigma=0$", "Lower noise  ·  $\\sigma=0.05$", "Higher noise  ·  $\\sigma=0.15$")
     for row, record in enumerate(data):
         case, exact = record["case"], record["exact"]
         A = np.asarray(case["matrix"])
@@ -252,8 +252,8 @@ def held_response(r, u, a, b, h):
 def conversation_dynamics(pilot, directory):
     fig, axes = plt.subplots(1, 2, figsize=(11.5, 6.25))
     fig.subplots_adjust(left=0.085, right=0.98, top=0.66, bottom=0.29, wspace=0.29)
-    fig.text(0.085, 0.975, "The rules made it into the conversation loop.", fontsize=20, weight="bold", va="top")
-    fig.text(0.085, 0.90, "Real generated conversations; two short runs per couple.", fontsize=12.5, color=GRAY)
+    fig.text(0.085, 0.975, "Affection after each Fable conversation", fontsize=20, weight="bold", va="top")
+    fig.text(0.085, 0.90, "Generated dialogue, two runs per couple, five attempted conversations per run.", fontsize=12.5, color=GRAY)
     handles = [Line2D([0], [0], color=INK, lw=1.7, linestyle="--", label="What the rule says"),
                Line2D([0], [0], color=RUN_COLORS[0], marker="o", markerfacecolor="white", markersize=7,
                       lw=0, label="Saved Fable feeling · run 1"),
@@ -298,14 +298,14 @@ def conversation_dynamics(pilot, directory):
         if panel == 0:
             ax.set_ylim(-0.08, 1.12)
             ax.set_yticks([0, 0.5, 1])
-            ax.set_title("Susan: a crush feeds itself\n$s_k=\\min(1,\\,0.2e^{0.5k})$", weight="bold", pad=12)
+            ax.set_title("Susan: affection grows without input\n$s_k=\\min(1,\\,0.2e^{0.5k})$", weight="bold", pad=12)
             ax.axhline(1, color=GRAY, lw=0.8, alpha=0.6)
             ax.annotate("Both runs overlap", (2, values[2]), xytext=(0.9, 0.9),
                         arrowprops={"arrowstyle": "-", "color": GRAY, "lw": 0.8}, fontsize=10, color=GRAY)
         else:
             ax.set_ylim(-1.12, 0.12)
             ax.set_yticks([-1, -0.5, 0])
-            ax.set_title("Juliet: warmth makes her retreat\n$j_{k+1}=\\max(-1,\\,j_k-0.5u_k)$", weight="bold", pad=12)
+            ax.set_title("Juliet: affection falls with rated warmth\n$j_{k+1}=\\max(-1,\\,j_k-0.5u_k)$", weight="bold", pad=12)
             ax.axhline(-1, color=GRAY, lw=0.8, alpha=0.6)
     fig.text(0.085, 0.135, "Here, $u$ is the appraiser's warmth rating of Romeo's speech; George's rated warmth stayed at 0.",
              fontsize=10.5, color=GRAY)

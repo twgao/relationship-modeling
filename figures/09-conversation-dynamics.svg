@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-28T02:51:04.006661</dc:date>
+    <dc:date>2026-09-28T18:18:22.287201</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -204,7 +204,7 @@ Q 166.921481 206.236487 176.202561 227.09213
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68757c" x="109.21159" y="179.475" transform="rotate(-0 109.21159 179.475)">Both runs overlap</text>
    </g>
    <g id="text_13">
-    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #25313d" transform="translate(118.380056 121.753125)">Susan: a crush feeds itself</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #25313d" transform="translate(82.439118 121.659375)">Susan: affection grows without input</text>
     <!-- $s_k=\min(1,\,0.2e^{0.5k})$ -->
     <g style="fill: #25313d" transform="translate(148.682868 136.95)">
      <text>
@@ -441,7 +441,7 @@ L 787.399375 315.45
 " style="fill: none; stroke: #c5cdd2; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_25">
-    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #25313d" transform="translate(514.429007 123.510375)">Juliet: warmth makes her retreat</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #25313d" transform="translate(491.719007 123.510375)">Juliet: affection falls with rated warmth</text>
     <!-- $j_{k+1}=\max(-1,\,j_k-0.5u_k)$ -->
     <g style="fill: #25313d" transform="translate(547.895882 136.95)">
      <text>
@@ -503,10 +503,10 @@ L 717.746824 299.337097
    </g>
   </g>
   <g id="text_26">
-   <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #25313d" x="46.339375" y="22.396875" transform="rotate(-0 46.339375 22.396875)">The rules made it into the conversation loop.</text>
+   <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #25313d" x="46.339375" y="22.396875" transform="rotate(-0 46.339375 22.396875)">Affection after each Fable conversation</text>
   </g>
   <g id="text_27">
-   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68757c" x="46.339375" y="40.95" transform="rotate(-0 46.339375 40.95)">Real generated conversations; two short runs per couple.</text>
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68757c" x="46.339375" y="40.95" transform="rotate(-0 46.339375 40.95)">Generated dialogue, two runs per couple, five attempted conversations per run.</text>
   </g>
   <g id="text_28">
    <!-- Here, $u$ is the appraiser's warmth rating of Romeo's speech; George's rated warmth stayed at 0. -->

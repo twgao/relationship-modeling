@@ -1,49 +1,49 @@
-# Love, feedback, and George Costanza
+# Testing relationship models in Fable
 
 *Influenced by PHYS 4410 Nonlinear Dynamics.*
 
-A fictional relationship is a feedback loop with a memory. Someone leans in; the other backs off. That retreat changes the next conversation. Repeat often enough and you get devotion, indifference, or an entire sitcom.
+I wanted to see whether the relationship models from class would still work when the characters had to talk to each other. I tested this in Fable, where characters converse, react, and carry their history into the next encounter. I used Romeo and Juliet, plus the George-and-Susan example from *Seinfeld*, and added a numerical feeling toward the other person.
 
-Fable makes this something we can experiment with. Its characters bring personalities, needs, and memories into conversations, then react to what happened. Here we add a numerical feeling toward the other person and a rule for how it changes. **Can a relationship pattern from a few equations survive contact with actual dialogue?**
+I started by checking the equations on their own. Positive feelings mean affection, negative feelings mean hostility, and zero means indifference. The two directions are separate: Susan liking George says nothing about George liking Susan.
 
-Start with a feeling as a number: positive means affection, negative means hostility, and zero means indifference. Each direction belongs to a different person. Susan liking George says nothing about George liking Susan.
+The rule is $\dot r=ar+bu$. A feeling’s rate of change depends on its current value and an input from the partner. The first term can reinforce or fade an existing feeling; the second can reciprocate or oppose the input. In the mathematical version, that input is the partner’s current feeling.
 
-The rule is $\dot r=ar+bu$: the rate of change in a feeling combines its own momentum with a response to the partner. The first term can reinforce or fade an existing feeling; the second can reciprocate or oppose the incoming signal. In the mathematical version, that signal is the partner’s current feeling.
+Romeo reciprocates Juliet’s feelings, while Juliet opposes Romeo’s. Their feelings cycle rather than settling. Susan’s feelings reinforce themselves and respond twice as strongly to George. George’s feelings fade on their own and oppose Susan’s. These rules also produce a cycle, with a different shape. Other choices give different outcomes: cautious reciprocators can approach indifference, while reinforcing an oscillation can produce an expanding spiral.
 
-Romeo responds positively to Juliet, while Juliet reacts against Romeo. When he warms up, she cools down; eventually her coldness cools him down, giving her room to warm up again. The equations produce a repeating loop. In the Susan–George example from *Seinfeld*, Susan’s feelings reinforce themselves and respond twice as strongly to George. George’s feelings fade on their own and oppose Susan’s. That also produces a loop, with considerably worse timing.
+Both ideal cycles take $2\pi$ units of model time. Romeo and Juliet are simultaneously affectionate for **25%** of a cycle; Susan and George are for **12.5%**.
 
-Both ideal cycles take $2\pi$ units of model time. Romeo and Juliet are simultaneously affectionate for **25%** of a cycle; Susan and George manage **12.5%**. Different rules give other familiar stories: two cautious reciprocators can settle into indifference, while stronger reinforcement can turn oscillation into an expanding spiral.
+![Ideal relationship cycles and their vector fields, overlaid with simulations at three noise levels.](https://raw.githubusercontent.com/twgao/relationship-modeling/main/figures/08-noise-overlay.png)
 
-![Ideal relationship loops and their vector fields, overlaid with simulations at three noise levels.](https://raw.githubusercontent.com/twgao/relationship-modeling/main/figures/08-noise-overlay.png)
+*Each point represents both characters’ feelings. Arrows show the direction of change. Black curves are the mathematical predictions; colored paths are individual simulations; dashed curves are their averages.*
 
-*Each point is a pair of feelings. The arrows show where the equations push that pair next. Black curves are the ideal loops; colored paths are individual simulations; the dashed curve is the average.*
+**The simulations without noise reproduce the predicted cycles.** I then added small, zero-mean Gaussian disturbances to each feeling while keeping the starting values fixed. Variance describes how widely those disturbances vary; tripling the noise strength multiplies their variance by nine.
 
-**The numerical simulations reproduce those ideal loops.** The noise-free points sit on the mathematical curves. Then we keep the same starting feelings and add random disturbances: small, zero-mean Gaussian pushes to each person. The noise strength sets their size: tripling it multiplies the variance—the spread around zero—by nine.
+I ran **8,000 noisy trajectories**: 2,000 per couple at each of two noise levels ($\sigma=0.05$ and $0.15$), plus two checks without noise. Each runs for one ideal cycle. Larger noise spreads out the individual paths, while their average stays close to the ideal curve. More simulations estimate the spread more precisely; they do not reduce it.
 
-The overlay uses **8,000 noisy trajectories**: 2,000 per couple at each of two noise levels ($\sigma=0.05$ and $0.15$), plus two noise-free checks. Each runs for one ideal cycle. Larger noise spreads out individual stories, while the average remains close to the ideal path. More simulations estimate that spread more precisely; they do not make individual stories less noisy.
+I also measured the time spent mutually affectionate. At the higher noise level, Romeo–Juliet averaged **22.6%** of a cycle, with the middle 95% of runs ranging from 13.5–29.0%. Susan–George averaged **9.7%**, with a middle 95% range of 0–15.2%. These ranges describe differences between runs. The average curve can look ideal while individual couples spend less time mutually affectionate.
 
-At the higher noise level, Romeo–Juliet spent an average **22.6%** of the cycle mutually affectionate; the middle 95% of runs ranged from 13.5–29.0%. Susan–George averaged **9.7%**, with a range of 0–15.2% for the middle 95%. Those ranges describe individual stories. The average orbit can look ideal while couples spend less time liking each other.
+To connect this to Fable, I changed the input to **warmth expressed in the partner’s words**. I used the existing pipeline: **Jev → sampled approach → conversation → appraisal → updated feelings**. Jev rates approaches using one character’s current feelings and context. A sampled approach guides Kimi, which writes both voices. Scout assesses the exchange and supplies a warmth rating supported by an exact quote. The response rule updates affection, and the new feeling and conversation history feed the next encounter.
 
-For Fable, the incoming signal becomes **warmth expressed in the partner’s words**. The loop is **Jev → sampled approach → conversation → appraisal → updated feelings**. Jev rates approaches using one character’s current feelings and context. A sampled approach guides Kimi, which writes both voices. Scout then assesses the exchange and supplies a warmth rating supported by an exact quote. The response rule converts that rating into a change in affection; the new feeling and conversation history feed the next encounter.
+I bounded the added affection score between −1 and +1 and kept it separate from Fable’s ordinary relationship score. I assigned the response rules directly and checked whether the recorded updates followed them.
 
-We bound this added affection score between −1 and +1 and keep it separate from Fable’s ordinary relationship score. The characters’ response rules are deliberately assigned. We are testing what those rules do through conversation, rather than discovering anyone’s personality from dialogue.
-
-The pilot ran **four short trajectories: two per couple, five attempted conversations each**. That meant 20 attempts, 19 accepted conversations, and 60 model requests. One failed validation and changed no state; each accepted conversation advanced half a unit of model time. These runs added **no Gaussian noise**: variation came from the sampled approaches, generated dialogue, and model ratings.
+The pilot had **four trajectories: two per couple, five attempted conversations each**. That produced 20 attempts, 19 accepted conversations, and 60 model requests. One failed validation and changed no state. Each accepted conversation advanced half a unit of model time. I added **no Gaussian noise** here; variation came from sampled approaches, generated dialogue, and model ratings.
 
 ![Recorded Fable affection updates compared with their assigned response rules.](https://raw.githubusercontent.com/twgao/relationship-modeling/main/figures/09-conversation-dynamics.png)
 
-*Replaying the assigned rule on the recorded warmth ratings matches the saved states. This checks the response mechanism, not a complete conversational cycle.*
+*Replaying the assigned rule on the recorded warmth ratings matches the saved states. This verifies the updates without establishing a full conversational cycle.*
 
-Susan’s two traces follow the same predicted rise, $0.2e^t$, until they hit the upper bound. Every George-to-Susan warmth rating was zero: her own emotional momentum drove the increase. Juliet’s affection fell when Romeo’s words were rated warm, exactly as her contrarian rule requires.
+Susan’s two traces follow the predicted rise, $0.2e^t$, until they hit the upper bound. Every George-to-Susan warmth rating was zero, so her increase came entirely from self-reinforcement. Juliet’s affection fell when Romeo’s words were rated warm, as her response rule requires.
 
-George provided the most compact demonstration:
+In one exchange:
 
 > **Susan:** “We could just sit for a bit. No perfect sentences required.”
 >
 > **George:** “That's... a novel approach. I think I can manage that.”
 
-Scout rated Susan’s words as warm. George’s assigned rule then moved his affection from **0 to −0.393**. His polite reply had already happened; the numerical reaction would inform the next conversation. Apparently, agreeing to sit together can still be a setback on George’s affection graph.
+Scout rated Susan’s words as warm. George’s assigned rule then moved his affection from **0 to −0.393**. His reply was generated before this update.
 
-The language measurement needs work: **31 of 38 accepted directional ratings were zero; the other seven were one**. Distinct conversations often became the same number. Updating between conversations also changes the dynamics, and these runs cover less than half an ideal cycle. The mathematical cycles are reproduced; the Fable pilot verifies the assigned response rules working on dialogue. Whether longer runs with better-calibrated warmth ratings sustain those cycles remains an open—and much more interesting—test.
+The warmth measurement was coarse: **31 of 38 accepted directional ratings were zero; the other seven were one**. Different conversations often became the same number. Updating between conversations also changes the dynamics, and these runs cover less than half an ideal cycle.
+
+I reproduced the mathematical cycles and verified the assigned response rules operating on real generated dialogue. I would need longer runs and better-calibrated warmth ratings before claiming that the conversations reproduce complete cycles.
 
 Code, results, and graphs are on [GitHub](https://github.com/twgao/relationship-modeling).
