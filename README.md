@@ -1,4 +1,4 @@
-# When feelings change the next conversation
+# Love, feedback, and George Costanza
 
 *Influenced by PHYS 4410 Nonlinear Dynamics.*
 
@@ -6,13 +6,21 @@ An article and reproducible figures connecting linear relationship models to a s
 
 Read [the article](article.md). For Obsidian, copy [the Markdown with hosted images](article-obsidian.md) into your existing note; those image links require internet access.
 
+## Reproduce the article figures
+
+```bash
+uv run illustrate-dynamics.py
+```
+
+This generates `article-dynamics-results.json` and figures 08/09. The first overlays the ideal relationship orbits and direction fields with noisy equation simulations. The second checks the assigned response rules against saved Fable conversation results. It makes no model requests and needs no credentials. Exact settings, trajectory counts, and numerical checks are recorded in the generated JSON.
+
 ## The Fable pilot
 
 Four short trajectories—two Romeo–Juliet and two Susan–George—attempted five encounters each. Jev rated the focal character's possible approaches, a seeded draw selected one, Kimi wrote both voices, and Scout appraised the exchange. Validated appraisals updated Fable's native state and a separate experimental affection variable before the next encounter.
 
 The run made 60 model requests: 19 encounters passed validation and one was rejected. These are descriptive observations, not evidence that conversational agents reproduce the ideal cycles. The article explains measurement, clipping, and conversation-timing effects.
 
-Regenerate the two conversation figures from the frozen, sanitized results, with no model calls or credentials:
+Regenerate the more detailed pilot figures (06/07) from the frozen, sanitized results, with no model calls or credentials:
 
 ```bash
 uv run analyze-fable.py --from-export fable-pilot-results.json
@@ -55,8 +63,9 @@ The script also checks the deterministic solutions against an independent differ
 ## Files
 
 - [Article](article.md)
+- [Article figure code](illustrate-dynamics.py) and [results](article-dynamics-results.json)
 - [Conversation results](fable-pilot-results.json) and [figure code](analyze-fable.py)
 - [Linear simulation code](simulate.py) and [numerical validation](results.json)
 - [Graphs](figures/)
 
-![Repeating relationships and their overlapping periods of affection](figures/01-cycles.png)
+![Ideal relationship dynamics overlaid with simulations at increasing noise levels](figures/08-noise-overlay.png)

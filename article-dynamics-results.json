@@ -1,0 +1,457 @@
+{
+  "experiment": "Article phase-space overlays; independent of the earlier 80,000-trajectory baseline.",
+  "protocol": {
+    "seed": 20260928,
+    "generator": "NumPy PCG64; SeedSequence([seed, case_index])",
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.3",
+    "initial_state": [
+      1.0,
+      0.0
+    ],
+    "initial_spread": 0,
+    "duration": 6.283185307179586,
+    "intervals": 1000,
+    "step_duration": 0.006283185307179587,
+    "sigmas": [
+      0,
+      0.05,
+      0.15
+    ],
+    "noisy_runs_per_case_per_nonzero_sigma": 2000,
+    "total_noisy_trajectories": 8000,
+    "independent_shock_streams": 4000,
+    "noise_free_numerical_controls": 2,
+    "paired_innovations_between_amplitudes": true,
+    "noise_definition": "dX = A X dt + sigma dW, with independent standard Brownian components.",
+    "noise_scale": "External driving increments have SD sigma*sqrt(dt). Exact state increments include drift during the interval.",
+    "transition": "Exact matrix exponential and integrated Gaussian covariance (Van Loan block exponential).",
+    "time_share_estimator": "1,000 left endpoints excluding final T; strict positivity in both coordinates; numerical residence estimate.",
+    "time_share_spread": "Empirical 2.5th and 97.5th percentiles across runs, not confidence intervals for the mean.",
+    "ideal_time_share_check": "20,000 analytic midpoints; also 1,000 exact-update numerical midpoints.",
+    "example_ids": [
+      0,
+      1,
+      2
+    ],
+    "example_selection": "First three paths fixed before simulation, not selected by outcome.",
+    "plot_scales": "Equal aspect; same symmetric coordinate bounds across noise levels within each couple; no shown path clipped.",
+    "vector_field": "Normalized deterministic drift direction, not speed and not a stochastic sample-path derivative.",
+    "theoretical_mean": "E[X(t)] = exp(A*t)*X(0) for all displayed noise levels; finite-sample means need not coincide exactly.",
+    "no_clipping": true
+  },
+  "mathematical_cases": [
+    {
+      "case": "romeo-juliet",
+      "matrix": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "ideal_mutual_affection_time_share": 0.25,
+      "noise_free_numerical_mutual_affection_time_share": 0.25,
+      "noise_free_max_coordinate_error": 1.4210854715202004e-14,
+      "noise_free_return_error": 1.4247975758388992e-14,
+      "conditions": [
+        {
+          "sigma": 0.05,
+          "n": 2000,
+          "time_share_mean": 0.2418865,
+          "time_share_sd_across_runs": 0.012274809702256624,
+          "time_share_middle_95_percent": [
+            0.214975,
+            0.263
+          ],
+          "time_share_median": 0.243,
+          "time_share_mean_coarsening_difference": -0.0002915000000000001,
+          "maximum_mean_curve_coordinate_error": 0.00616480228596028,
+          "rms_mean_curve_coordinate_error": 0.002585639235322728,
+          "endpoint_empirical_mean": [
+            1.0050789739145567,
+            -0.0010265651043533553
+          ],
+          "endpoint_theoretical_mean": [
+            1.0,
+            2.4492935982947064e-16
+          ],
+          "endpoint_empirical_covariance": [
+            [
+              0.01488932434033114,
+              -0.00044690187954677296
+            ],
+            [
+              -0.00044690187954677296,
+              0.015549679138006842
+            ]
+          ],
+          "endpoint_theoretical_covariance": [
+            [
+              0.015707963267948967,
+              0.0
+            ],
+            [
+              0.0,
+              0.015707963267948967
+            ]
+          ],
+          "endpoint_mean_error_in_mc_standard_errors": [
+            1.8123039692542884,
+            -0.36630391189562883
+          ],
+          "endpoint_covariance_error_in_mc_standard_errors": [
+            [
+              -1.6476460229657501,
+              -1.2720339459871224
+            ],
+            [
+              -1.2720339459871224,
+              -0.3185729488293841
+            ]
+          ]
+        },
+        {
+          "sigma": 0.15,
+          "n": 2000,
+          "time_share_mean": 0.22578,
+          "time_share_sd_across_runs": 0.04007491234300644,
+          "time_share_middle_95_percent": [
+            0.135,
+            0.29
+          ],
+          "time_share_median": 0.23,
+          "time_share_mean_coarsening_difference": -0.0004290000000000127,
+          "maximum_mean_curve_coordinate_error": 0.018494406857909595,
+          "rms_mean_curve_coordinate_error": 0.007756917705979553,
+          "endpoint_empirical_mean": [
+            1.015236921743694,
+            -0.003079695313062114
+          ],
+          "endpoint_theoretical_mean": [
+            1.0,
+            2.4492935982947064e-16
+          ],
+          "endpoint_empirical_covariance": [
+            [
+              0.13400391906298023,
+              -0.004022116915920953
+            ],
+            [
+              -0.004022116915920953,
+              0.13994711224206158
+            ]
+          ],
+          "endpoint_theoretical_covariance": [
+            [
+              0.1413716694115407,
+              0.0
+            ],
+            [
+              0.0,
+              0.1413716694115407
+            ]
+          ],
+          "endpoint_mean_error_in_mc_standard_errors": [
+            1.812303969257141,
+            -0.3663039118958142
+          ],
+          "endpoint_covariance_error_in_mc_standard_errors": [
+            [
+              -1.6476460229657564,
+              -1.272033945987121
+            ],
+            [
+              -1.272033945987121,
+              -0.3185729488293833
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "case": "susan-george",
+      "matrix": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          -1.0,
+          -1.0
+        ]
+      ],
+      "ideal_mutual_affection_time_share": 0.125,
+      "noise_free_numerical_mutual_affection_time_share": 0.125,
+      "noise_free_max_coordinate_error": 1.587618925213974e-14,
+      "noise_free_return_error": 1.60371930955402e-14,
+      "conditions": [
+        {
+          "sigma": 0.05,
+          "n": 2000,
+          "time_share_mean": 0.115078,
+          "time_share_sd_across_runs": 0.014384344638715478,
+          "time_share_middle_95_percent": [
+            0.078,
+            0.134
+          ],
+          "time_share_median": 0.12,
+          "time_share_mean_coarsening_difference": -0.00028700000000000947,
+          "maximum_mean_curve_coordinate_error": 0.00606831865268076,
+          "rms_mean_curve_coordinate_error": 0.002701266149408311,
+          "endpoint_empirical_mean": [
+            1.0028266661458178,
+            -0.0022530353412271225
+          ],
+          "endpoint_theoretical_mean": [
+            0.9999999999999998,
+            2.4492935982947064e-16
+          ],
+          "endpoint_empirical_covariance": [
+            [
+              0.04823154895024782,
+              -0.023518311128606417
+            ],
+            [
+              -0.023518311128606417,
+              0.023479172355934316
+            ]
+          ],
+          "endpoint_theoretical_covariance": [
+            [
+              0.04712388980384691,
+              -0.023561944901923454
+            ],
+            [
+              -0.023561944901923454,
+              0.023561944901923454
+            ]
+          ],
+          "endpoint_mean_error_in_mc_standard_errors": [
+            0.582329711926312,
+            -0.6564133936337199
+          ],
+          "endpoint_covariance_error_in_mc_standard_errors": [
+            [
+              0.7431156463081092,
+              0.047803247875796845
+            ],
+            [
+              0.047803247875796845,
+              -0.11106227797449661
+            ]
+          ]
+        },
+        {
+          "sigma": 0.15,
+          "n": 2000,
+          "time_share_mean": 0.0967605,
+          "time_share_sd_across_runs": 0.04126213059768885,
+          "time_share_middle_95_percent": [
+            0.0,
+            0.152
+          ],
+          "time_share_median": 0.111,
+          "time_share_mean_coarsening_difference": -0.0003964999999999802,
+          "maximum_mean_curve_coordinate_error": 0.01820495595805066,
+          "rms_mean_curve_coordinate_error": 0.008103798448231433,
+          "endpoint_empirical_mean": [
+            1.008479998437491,
+            -0.0067591060236901175
+          ],
+          "endpoint_theoretical_mean": [
+            0.9999999999999998,
+            2.4492935982947064e-16
+          ],
+          "endpoint_empirical_covariance": [
+            [
+              0.4340839405522303,
+              -0.21166480015745773
+            ],
+            [
+              -0.21166480015745773,
+              0.2113125512034088
+            ]
+          ],
+          "endpoint_theoretical_covariance": [
+            [
+              0.42411500823462206,
+              -0.21205750411731103
+            ],
+            [
+              -0.21205750411731103,
+              0.21205750411731103
+            ]
+          ],
+          "endpoint_mean_error_in_mc_standard_errors": [
+            0.5823297119288585,
+            -0.656413393634522
+          ],
+          "endpoint_covariance_error_in_mc_standard_errors": [
+            [
+              0.7431156463081151,
+              0.04780324787579348
+            ],
+            [
+              0.04780324787579348,
+              -0.11106227797449457
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "exact_transition_composition": "passed",
+    "covariance_quadrature_and_full_period_closed_form": "passed",
+    "monte_carlo_mean_and_covariance_within_six_standard_errors": "passed",
+    "conversation_replay": "passed"
+  },
+  "conversation_figure": {
+    "source": "fable-pilot-results.json",
+    "new_provider_calls": 0,
+    "pilot_counts": {
+      "planned_encounters": 20,
+      "recorded_attempts": 20,
+      "accepted": 19,
+      "rejected": 1,
+      "incomplete_records": 0,
+      "not_attempted": 0,
+      "planned_maximum_provider_calls": 60,
+      "recorded_provider_calls": 60,
+      "calls_by_stage": {
+        "rating": 20,
+        "dialogue": 20,
+        "appraisal": 20
+      },
+      "person_updates_clipped": 5,
+      "final_summary_present": true,
+      "stopped_early": false
+    },
+    "checks": [
+      {
+        "case": "susan-george",
+        "character": "Susan",
+        "seed": 20260927,
+        "accepted_steps": 5,
+        "observed_warmth": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "saved_affection": [
+          0.2,
+          0.32974425414002567,
+          0.5436563656918091,
+          0.896337814067613,
+          1,
+          1
+        ],
+        "replayed_affection": [
+          0.2,
+          0.32974425414002567,
+          0.5436563656918091,
+          0.896337814067613,
+          1.0,
+          1.0
+        ],
+        "maximum_replay_error": 0.0
+      },
+      {
+        "case": "susan-george",
+        "character": "Susan",
+        "seed": 20260928,
+        "accepted_steps": 5,
+        "observed_warmth": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "saved_affection": [
+          0.2,
+          0.32974425414002567,
+          0.5436563656918091,
+          0.896337814067613,
+          1,
+          1
+        ],
+        "replayed_affection": [
+          0.2,
+          0.32974425414002567,
+          0.5436563656918091,
+          0.896337814067613,
+          1.0,
+          1.0
+        ],
+        "maximum_replay_error": 0.0
+      },
+      {
+        "case": "romeo-juliet",
+        "character": "Juliet",
+        "seed": 20260927,
+        "accepted_steps": 5,
+        "observed_warmth": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "saved_affection": [
+          0,
+          -0.5,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "replayed_affection": [
+          0,
+          -0.5,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "maximum_replay_error": 0.0
+      },
+      {
+        "case": "romeo-juliet",
+        "character": "Juliet",
+        "seed": 20260928,
+        "accepted_steps": 4,
+        "observed_warmth": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "saved_affection": [
+          0,
+          0,
+          0,
+          -0.5,
+          -1
+        ],
+        "replayed_affection": [
+          0,
+          0.0,
+          0.0,
+          -0.5,
+          -1.0
+        ],
+        "maximum_replay_error": 0.0
+      }
+    ],
+    "interpretation": "Replays the authored response rule with rated speech. Not an independent behavioral prediction or evidence of full-cycle reproduction."
+  }
+}
