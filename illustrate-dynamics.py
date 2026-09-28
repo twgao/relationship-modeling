@@ -177,7 +177,11 @@ def save_figure(fig, directory, name):
     directory.mkdir(parents=True, exist_ok=True)
     for extension in ("png", "svg"):
         metadata = {"Creator": "illustrate-dynamics.py"} if extension == "svg" else None
-        fig.savefig(directory / f"{name}.{extension}", dpi=210, bbox_inches="tight", metadata=metadata)
+        path = directory / f"{name}.{extension}"
+        fig.savefig(path, dpi=210, bbox_inches="tight", metadata=metadata)
+        if extension == "svg":
+            # Matplotlib emits insignificant trailing spaces in SVG markup.
+            path.write_text("\n".join(line.rstrip() for line in path.read_text().splitlines()) + "\n")
     plt.close(fig)
 
 
