@@ -1,17 +1,23 @@
 # Testing relationship models in Fable
 
-*Influenced by PHYS 4410 Nonlinear Dynamics.*
+Context: working on creating worlds with AI characters that change and evolve by themselves
 
-I wanted to see whether the relationship models from class would still work when the characters had to talk to each other. I tested this in Fable, where characters converse, react, and carry their history into the next encounter. I used Romeo and Juliet, plus the George-and-Susan example from *Seinfeld*, and added a numerical feeling toward the other person.
+How characters change
 
-| Quantity | What it means | How I used it |
-|---|---|---|
-| Affection, $r$ | One character’s feeling toward the other. | Positive = affection; zero = indifference; negative = hostility. Unbounded in the equations; clipped to −1…+1 in Fable. |
-| Own-response coefficient, $a$ | How a feeling changes on its own. | Assigned: positive amplifies the current feeling; negative lets it fade; zero adds no change through this term. |
-| Partner-response coefficient, $b$ | How strongly a character responds to the incoming signal. | Assigned: positive reciprocates; negative opposes. A larger magnitude means a stronger response. |
-| Incoming signal, $u$ | What the character responds to. | The partner’s feeling in the equations; Scout’s quote-backed warmth rating, −1…+1, in Fable. |
-| Noise strength, $\sigma$ | The size of added Gaussian disturbances. | 0, 0.05, or 0.15 in the mathematical runs. No Gaussian noise added to the conversations. |
-| Model time, $t$ | Arbitrary units, not minutes or days. | Each accepted conversation advances time by 0.5; a rejected attempt advances it by zero. |
+* talking to each other and learning new information from what’s said. In scenes with the player, they can also remember dialogue and player actions happening around them.
+* reacting by updating their relationship scores, stress, energy, and social needs. A commitment made in conversation can also become a goal.
+* bringing selected memories, recent conversation summaries, and their current state into later interactions. A separate reflection step when they go to sleep can also change their personality over time.
+
+For this experiment, I focused on direct conversations and kept the personalities and response coefficients fixed.
+
+| Quantity                          | Definition                                                | Details                                                                                                                 |
+| --------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Affection, $r$                    | One character’s feeling toward the other.                 | Positive = affection; zero = indifference; negative = hostility. Unbounded in the equations; clipped to −1…+1 in Fable. |
+| Own-response coefficient, $a$     | How a feeling changes on its own.                         | Assigned: positive amplifies the current feeling; negative lets it fade; zero adds no change through this term.         |
+| Partner-response coefficient, $b$ | How strongly a character responds to the incoming signal. | Assigned: positive reciprocates; negative opposes. A larger magnitude means a stronger response.                        |
+| Incoming signal, $u$              | What the character responds to.                           | The partner’s feeling in the equations; Scout’s quote-backed warmth rating, −1…+1, in Fable.                            |
+| Noise strength, $\sigma$          | The size of added Gaussian disturbances.                  | 0, 0.05, or 0.15 in the mathematical runs. No Gaussian noise added to the conversations.                                |
+| Model time, $t$                   | Arbitrary units, not minutes or days.                     | Each accepted conversation advances time by 0.5; a rejected attempt advances it by zero.                                |
 
 I kept this experimental affection score separate from Fable’s existing relationship score. Susan’s affection toward George and George’s affection toward Susan are also separate values.
 
