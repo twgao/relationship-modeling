@@ -2,11 +2,11 @@
 
 Context: working on creating worlds with AI characters that change and evolve by themselves
 
-How characters change
+How characters change:
 
-* talking to each other and learning new information from what’s said. In scenes with the player, they can also remember dialogue and player actions happening around them.
-* reacting by updating their relationship scores, stress, energy, and social needs. A commitment made in conversation can also become a goal.
-* bringing selected memories, recent conversation summaries, and their current state into later interactions. A separate reflection step when they go to sleep can also change their personality over time.
+* talking to each other - dialogue and character actions happening around them
+* keeping a stored state for each character: a personality description (Romeo is “warm and expressive”; Juliet is “independent and guarded”), plus mood, energy, stress, social needs, goals, and memories. Each relationship has its own record: a score from −100 to 100, a label like friend or stranger, a written impression of the other person, and facts learned about them. George’s view of Susan is stored separately from Susan’s view of George. Conversations can change those scores and impressions.
+* bringing memories, recent conversation summaries, and their current state into later interactions. A separate reflection step when they go to sleep can also change their state
 
 For this experiment, I focused on direct conversations and kept the personalities and response coefficients fixed.
 
